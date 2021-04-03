@@ -17,7 +17,7 @@ class Basket {
     ArrayList<Item> content;
     BigDecimal totalPrice;
 
-    private Basket(ArrayList<Item> content) {
+    Basket(ArrayList<Item> content) {
         this.content = content;
         this.totalPrice = calculateTotalPrice(content);
     }
