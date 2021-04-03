@@ -19,18 +19,16 @@ class Item {
     @NotNull
     BigDecimal price;
 
-    @NotBlank
-    int discountPercent;
 
-    private Item(String name, BigDecimal price, int discountPercent) {
+
+    private Item(String name, BigDecimal price) {
         this.name = name;
         this.price = price;
-        this.discountPercent = discountPercent;
     }
 
 
-    public static Item create(String name, BigDecimal price, int discountPercent) {
-        return new Item(name, price, discountPercent);
+    public static Item create(String name, BigDecimal price) {
+        return new Item(name, price);
     }
 
 

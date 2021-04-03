@@ -12,10 +12,9 @@ class ItemTest {
     @Test
     @DisplayName("should create item")
     void shouldCreateItem() {
-        Item item = Item.create("Product", BigDecimal.valueOf(10.5), 0);
+        Item item = Item.create("Product", BigDecimal.valueOf(10.5));
         Assertions.assertEquals("Product", item.name);
         Assertions.assertEquals(new BigDecimal("10.5"), item.price);
-        Assertions.assertEquals(0, item.discountPercent);
     }
 
 }
