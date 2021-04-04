@@ -55,4 +55,19 @@ class BasketServiceTest {
         Assertions.assertTrue(basket.content.contains(productOne));
     }
 
+    @Test
+    @DisplayName("basket length should be 3")
+    void basketLengthShouldBeThree(){
+        Basket basket = new Basket();
+        Product productOne = Product.create("ProductOne", BigDecimal.valueOf(10));
+        Product productTwo = Product.create("ProductTwo", BigDecimal.valueOf(15));
+        Product productThree = Product.create("ProductTwo", BigDecimal.valueOf(20));
+        basket = basketService.addProduct(basket, productOne);
+        basket = basketService.addProduct(basket, productTwo);
+        basket = basketService.addProduct(basket, productThree);
+        Assertions.assertEquals(3,basket.content.size());
+    }
+
+
+
 }
