@@ -9,25 +9,17 @@ import java.math.BigDecimal;
 import java.util.ArrayList;
 
 @ToString
-class Basket {
+public class Basket {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     int id;
 
-    ArrayList<Item> content;
-    BigDecimal totalPrice;
+    public ArrayList<Product> content;
+    public BigDecimal totalPrice;
 
-    Basket(ArrayList<Item> content) {
-        this.content = content;
-        this.totalPrice = calculateTotalPrice(content);
-    }
-
-    private static BigDecimal calculateTotalPrice(ArrayList<Item> content) {
-        BigDecimal sum = new BigDecimal("0");
-        for (Item item : content) {
-            sum = sum.add(item.price);
-        }
-        return sum;
+    public Basket() {
+        this.content = new ArrayList<>();
+        this.totalPrice = BigDecimal.ZERO;
     }
 
 

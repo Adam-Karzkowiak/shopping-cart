@@ -6,15 +6,15 @@ import org.junit.jupiter.api.Test;
 
 import java.math.BigDecimal;
 
-class ItemTest {
+class ProductTest {
 
 
     @Test
     @DisplayName("should create item")
     void shouldCreateItem() {
-        Item item = Item.create("Product", BigDecimal.valueOf(10.5));
-        Assertions.assertEquals("Product", item.name);
-        Assertions.assertEquals(new BigDecimal("10.5"), item.price);
+        Product product = Product.create("Product", BigDecimal.valueOf(10.5));
+        Assertions.assertEquals("Product", product.name);
+        Assertions.assertEquals(new BigDecimal("10.5"), product.price);
     }
 
 }
