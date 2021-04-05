@@ -16,8 +16,9 @@ public class Product {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     int id;
 
+
     @NotNull
-    String name;
+    public String name;
 
     @NotNull
     public BigDecimal price;
