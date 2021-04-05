@@ -5,6 +5,7 @@ import com.shopcart.shoppingcart.model.Product;
 
 import java.math.BigDecimal;
 import java.util.ArrayList;
+import java.util.Iterator;
 
 class BasketService {
 
@@ -21,6 +22,12 @@ class BasketService {
             sum = sum.add(product.price);
         }
         return sum;
+    }
+
+    Basket removeProductByName(Basket basket, String productName) {
+        basket.content.removeIf(o -> o.name.equals(productName));
+        basket.totalPrice = calculateTotalPrice(basket.content);
+        return basket;
     }
 
 
