@@ -10,16 +10,17 @@ import java.math.BigDecimal;
 class BasketServiceTest {
 
     BasketService basketService;
+    Basket basket;
 
     @BeforeEach
     void setup() {
         basketService = new BasketService();
+        basket = new Basket();
     }
 
     @Test
-    @DisplayName("should calculate value of basket items")
+    @DisplayName("should calculate proper value of basket items")
     void shouldCalculateValueOfBasketItems() {
-        Basket basket = new Basket();
         Product productOne = Product.create("ProductOne", BigDecimal.valueOf(10));
         Product productTwo = Product.create("ProductTwo", BigDecimal.valueOf(15));
         Product productThree = Product.create("ProductTwo", BigDecimal.valueOf(20));
@@ -34,7 +35,6 @@ class BasketServiceTest {
     @Test
     @DisplayName("should give wrong value of basket items")
     void shouldGiveWrongValueOfBasketItems() {
-        Basket basket = new Basket();
         Product productOne = Product.create("ProductOne", BigDecimal.valueOf(10));
         Product productTwo = Product.create("ProductTwo", BigDecimal.valueOf(15));
         Product productThree = Product.create("ProductTwo", BigDecimal.valueOf(20));
@@ -49,7 +49,6 @@ class BasketServiceTest {
     @Test
     @DisplayName("should add product to the basket")
     void shouldAddProductToTheBasket() {
-        Basket basket = new Basket();
         Product productOne = Product.create("ProductOne", BigDecimal.valueOf(10));
         basket = basketService.addProduct(basket, productOne);
         Assertions.assertTrue(basket.content.contains(productOne));
@@ -57,17 +56,26 @@ class BasketServiceTest {
 
     @Test
     @DisplayName("basket length should be 3")
-    void basketLengthShouldBeThree(){
-        Basket basket = new Basket();
+    void basketLengthShouldBeThree() {
         Product productOne = Product.create("ProductOne", BigDecimal.valueOf(10));
         Product productTwo = Product.create("ProductTwo", BigDecimal.valueOf(15));
         Product productThree = Product.create("ProductTwo", BigDecimal.valueOf(20));
         basket = basketService.addProduct(basket, productOne);
         basket = basketService.addProduct(basket, productTwo);
         basket = basketService.addProduct(basket, productThree);
-        Assertions.assertEquals(3,basket.content.size());
+        Assertions.assertEquals(3, basket.content.size());
     }
 
 
+    @Test
+    @DisplayName("should remove product from the basket")
+    void shouldRemoveProductFromTheBasket() {
+        Product productOne = Product.create("ProductOne", BigDecimal.valueOf(10));
+        Product productTwo = Product.create("ProductTwo", BigDecimal.valueOf(15));
+        basket = basketService.addProduct(basket,productOne);
+        basket = basketService.addProduct(basket,productTwo);
+        basket=basketService.removeProductByName(basket,"ProductOne");
+        Assertions.assertFalse(basket.content.stream().anyMatch(o -> o.name.equals("ProductOne")));
 
+    }
 }
